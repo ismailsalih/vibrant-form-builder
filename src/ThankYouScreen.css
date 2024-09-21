@@ -1,0 +1,26 @@
+.thank-you-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #81c784, #4db6ac);
+    color: white;
+    text-align: center;
+  }
+  
+  .submit-another-button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #00796b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-another-button:hover {
+    background-color: #004d40;
+  }  

@@ -1,0 +1,74 @@
+.form-container {
+    max-width: 700px;
+    max-height: 500px;
+    margin: auto;
+    height: 100vh;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        height: auto; /* Adjust for smaller screens */
+        max-height: 100vh; /* Allow it to be up to full height */
+    }
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+input[type="email"]:focus {
+    background: rgba(255, 255, 255, 0.2);
+    outline: none;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.back-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.back-button:hover {
+    transform: scale(1.05);
+}
+
+.back-button:disabled {
+    background: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+}
+
+.back-button:not(:disabled):first-child {
+    background-color: #ff6f61; /* Vibrant color for Back button */
+}
+
+.back-button:not(:disabled):last-child {
+    background-color: #6fbf7f; /* Vibrant color for Next button */
+}
