@@ -12,7 +12,7 @@ function App() {
       <div className="app">
       <Routes>
           <Route path="/" element={<FormBuilder />} />
-          <Route path="/saved-form" element={<SavedForm />} />
+          <Route path="/SavedForm" element={<SavedForm />} />
           <Route path="/thankyou" element={<ThankYouScreen />} />
           <Route path="/buildform" element={<FormBuilder />} />
         </Routes>
