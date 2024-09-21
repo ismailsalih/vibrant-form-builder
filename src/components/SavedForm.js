@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom'; // To get the data passed from FormBuilder
+import { useLocation } from 'react-router-dom';
 import '../SavedForm.css';
 import ProgressBar from './ProgressBar';
 import TextInput from './TextInput';
 import { useNavigate } from 'react-router-dom';
 
 const SavedForm = () => {
-    const { state } = useLocation(); // Get the passed data
-    const { steps } = state || { steps: [] }; // Default to empty if no state
+    const { state } = useLocation(); 
+    const { steps } = state || { steps: [] }; 
     const [isLast, setLast] = useState(false);
 
     const [activeStep, setActiveStep] = useState(0);
@@ -16,9 +16,9 @@ const SavedForm = () => {
         setActiveStep((prev) => {
             const nextStep = Math.min(prev + 1, steps.length - 1);
             if (nextStep === steps.length - 1) {
-                setLast(true);  // Set `isLast` to true if it's the last step
+                setLast(true);  
             } else {
-                setLast(false); // Reset `isLast` if it's not the last step
+                setLast(false); 
             }
             return nextStep;
         });
@@ -80,7 +80,6 @@ const SavedForm = () => {
                         <select>
                             <option value="usa">United States</option>
                             <option value="canada">Canada</option>
-                            {/* Add more countries as needed */}
                         </select>
                     </div>
                 );

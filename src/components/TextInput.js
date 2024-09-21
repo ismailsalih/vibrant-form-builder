@@ -1,4 +1,4 @@
-// src/components/TextInput.js
+
 import React from 'react';
 
 const TextInput = ({ label, placeholder }) => {

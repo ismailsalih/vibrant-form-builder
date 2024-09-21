@@ -1,6 +1,6 @@
 // ProgressBar.js
 import React from 'react';
-import '../ProgressBar.css'; // Add your styles here
+import '../ProgressBar.css';
 
 const ProgressBar = ({ steps, activeStep }) => {
     const progressPercentage = ((activeStep + 1) / steps.length) * 100;

@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@material-ui/core';
 import TextInput from './TextInput';
 import 'font-awesome/css/font-awesome.min.css';
 import '../FormBuilder.css'
-import ToggleButton from './ToggleButton'; // Adjust the path based on your folder structure
+import ToggleButton from './ToggleButton';
 import { useNavigate } from 'react-router-dom';
-import { type } from '@testing-library/user-event/dist/type';
 
 const FormBuilder = () => {
     const [steps, setSteps] = useState([{ id: 1, name: 'Welcome', desc: 'This is a description of the form', fields: [] }]);
-    const [titles, setTitles] = useState([]); // State to hold titles for each field
+    const [titles, setTitles] = useState([]);
     const [description, setDescription] = useState([]);
     const [activeStep, setActiveStep] = useState(0);
     const [dialogOpen, setDialogOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [existingFieldTypes, setExistingFieldTypes] = useState([]);
 
-    // Function to get description based on field type
     const getDescription = (type) => {
         const descriptions = {
             text: "Enter text",
@@ -49,22 +47,20 @@ const FormBuilder = () => {
         return titles[type] || 'Field';
     };
 
-    // Delete a step
     const deleteStep = (id) => {
-        if (id === 1) return; // Don't delete Welcome step
+        if (id === 1) return;
         setSteps(steps.filter(step => step.id !== id));
-        setActiveStep(Math.max(0, activeStep - 1)); // Adjust active step after deletion
+        setActiveStep(Math.max(0, activeStep - 1));
     };
 
-    // Open dialog to add field
     const openDialog = () => {
         const currentFields = steps.flatMap(step => step.fields.map(field => field.type));
-        // Only open the dialog if there are available field types
-        if (currentFields.length < 9) { // Adjust this number based on how many types you have
-            setExistingFieldTypes(currentFields); // Update existing field types
-            setDialogOpen(true); // Open the dialog
+    
+        if (currentFields.length < 9) { 
+            setExistingFieldTypes(currentFields); 
+            setDialogOpen(true); 
         } else {
-            // Optionally, you could show a message to the user that all fields have been added
+            
             alert("All field types have already been added.");
         }
     };
@@ -74,30 +70,27 @@ const FormBuilder = () => {
         setEditOpen(true);
     }
 
-    // Add selected field type to current step
     const addFieldToStep = (type) => {
         const newField = { id: Date.now(), type };
         setSteps((prevSteps) => {
             const updatedSteps = [...prevSteps];
 
-            // Create a new step and add it to the steps array
             const newStep = { id: updatedSteps.length + 1, type: type, name: getFieldTitle(type), desc: getDescription(type), fields: [newField] };
             updatedSteps.push(newStep);
 
-            // Initialize the title for the new step
             setTitles((prevTitles) => [...prevTitles, getFieldTitle(type)]);
             setDescription((prevDescs) => [...prevDescs, getDescription(type)]);
 
             return updatedSteps;
         });
-        setActiveStep(steps.length); // Set the new step as active
-        setDialogOpen(false); // Close dialog after adding
+        setActiveStep(steps.length);
+        setDialogOpen(false);
     };
 
     const handleTitleChange = (newTitle) => {
         setTitles((prevTitles) => {
             const updatedTitles = [...prevTitles];
-            updatedTitles[activeStep - 1] = newTitle; // Update the title for the active step
+            updatedTitles[activeStep - 1] = newTitle;
             return updatedTitles;
         });
     };
@@ -105,7 +98,7 @@ const FormBuilder = () => {
     const handleDescChange = (newDesc) => {
         setDescription((prevDescs) => {
             const updatedDescs = [...prevDescs];
-            updatedDescs[activeStep - 1] = newDesc; // Update the title for the active step
+            updatedDescs[activeStep - 1] = newDesc;
             return updatedDescs;
         });
     };
@@ -154,7 +147,6 @@ const FormBuilder = () => {
                         <select>
                             <option value="usa">United States</option>
                             <option value="canada">Canada</option>
-                            {/* Add more countries as needed */}
                         </select>
                     </div>
                 );
@@ -172,7 +164,7 @@ const FormBuilder = () => {
                 type: step.type,
                 name: step.name,
                 desc: step.desc,
-                fields: step.fields // Assuming each step has an array of fields
+                fields: step.fields
             }))
         };
         navigate('/SavedForm', { state: formData });
@@ -195,13 +187,13 @@ const FormBuilder = () => {
                                     <li
                                         key={step.id}
                                         className={`mt-2 bg-gray-100 rounded-md flex items-center p-2 cursor-pointer hover:bg-gray-200 ${activeStep === index ? 'active' : ''}`}
-                                        onClick={() => openEditor(index)} // Make the li clickable
+                                        onClick={() => openEditor(index)}
                                     >
-                                        <span className="flex-grow text-center">{step.name}</span> {/* Center text */}
+                                        <span className="flex-grow text-center">{step.name}</span>
                                         {step.id !== 1 && (
                                             <button
                                                 onClick={(e) => {
-                                                    e.stopPropagation(); // Prevent click event from bubbling up to the li
+                                                    e.stopPropagation();
                                                     deleteStep(step.id);
                                                 }}
                                                 className="flex items-center justify-center w-8 h-8 text-gray-600 hover:bg-gray-200 rounded-full focus:outline-none">
@@ -275,7 +267,6 @@ const FormBuilder = () => {
 
             {/* Right Panel: Form Preview */}
             <div className="form-preview flex flex-col p-12 justify-center">
-                {/* Render title based on the type of the first field */}
                 <h2 class="font-serif text-xl">
                     {titles[activeStep - 1] || 'No title available'}
                 </h2>
@@ -289,14 +280,8 @@ const FormBuilder = () => {
                         </div>
                     ))}
                 </div>
-
-                {/* Back and Next buttons */}
-                {/* <div className="navigation-buttons">
-                    <Button disabled={activeStep === steps.length - 1} onClick={() => setActiveStep(activeStep + 1)}>Next</Button>
-                </div> */}
             </div>
 
-            {/* Dialog for Adding Fields */}
             <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)} PaperProps={{ style: { position: 'absolute', top: 20, margin: 0 } }}>
                 <DialogTitle>Add Field</DialogTitle>
                 <DialogContent>
