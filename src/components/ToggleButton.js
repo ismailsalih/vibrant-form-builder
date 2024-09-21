@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const ToggleButton = ({}) => {
+const ToggleButton = () => {
   const [isToggled, setIsToggled] = useState(false);
 
   // Toggle function
