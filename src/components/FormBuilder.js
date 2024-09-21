@@ -2,7 +2,6 @@ import React, { useState} from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@material-ui/core';
 import TextInput from './TextInput';
 import 'font-awesome/css/font-awesome.min.css';
-import '../FormBuilder.css'
 import ToggleButton from './ToggleButton';
 import { useNavigate } from 'react-router-dom';
 
