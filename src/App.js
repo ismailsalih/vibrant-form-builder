@@ -10,16 +10,10 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <Routes>
+      <Routes>
           <Route path="/" element={<FormBuilder />} />
-          <Route path="/SavedForm" element={<SavedForm />} />
-        </Routes>
-        <Routes>
-          <Route path="/" element={<SavedForm />} />
+          <Route path="/saved-form" element={<SavedForm />} />
           <Route path="/thankyou" element={<ThankYouScreen />} />
-        </Routes>
-        <Routes>
-          <Route path="/" element={<ThankYouScreen />} />
           <Route path="/buildform" element={<FormBuilder />} />
         </Routes>
       </div>
