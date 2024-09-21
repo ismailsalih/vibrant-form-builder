@@ -1,8 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import '../ThankYouScreen.css';
+import { useNavigate } from 'react-router-dom';
 
-const ThankYouScreen = ({ submitAnother }) => {
+const ThankYouScreen = () => {
+
+    const navigate = useNavigate();
+    const submitAnother = () => {
+        navigate('/buildform');
+    }
   return (
     <motion.div
       className="thank-you-screen"
@@ -10,7 +16,7 @@ const ThankYouScreen = ({ submitAnother }) => {
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
     >
-      <h1>Thank You for Your Submission!</h1>
+      <h1>Thank You for Using Our FormBuilder!</h1>
       <p>Your response has been recorded.</p>
       <motion.button
         onClick={submitAnother}
@@ -18,7 +24,7 @@ const ThankYouScreen = ({ submitAnother }) => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        Submit Another Response
+        Build Another Form
       </motion.button>
     </motion.div>
   );

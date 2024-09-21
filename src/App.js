@@ -18,6 +18,10 @@ function App() {
           <Route path="/" element={<SavedForm />} />
           <Route path="/thankyou" element={<ThankYouScreen />} />
         </Routes>
+        <Routes>
+          <Route path="/" element={<ThankYouScreen />} />
+          <Route path="/buildform" element={<FormBuilder />} />
+        </Routes>
       </div>
     </Router>
   );
